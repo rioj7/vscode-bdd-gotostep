@@ -53,7 +53,7 @@ var checkLine = (function () {
         }
         if (regexStr) {
           lineBuffer = undefined;
-          return (new RegExp(regexStr.replace(/\{.*?\}/g, '.*?'), 'i')).test(step);
+          return (new RegExp(regexStr.replace(/\{.*?\}|\(\?P<\w+>[^)]+\)/g, '.*?'), 'i')).test(step);
         }
       }
     }
