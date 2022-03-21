@@ -1,0 +1,66 @@
+{
+  "name": "vscode-bdd-gotostep",
+  "displayName": "BDD Goto Step",
+  "description": "From feature file go to step definition",
+  "version": "0.1.0",
+  "publisher": "rioj7",
+  "license": "MIT",
+  "engines": {"vscode": "^1.60.0"},
+  "categories": ["Other"],
+  "keywords": ["bdd","cucumber","behave","goto","go to","step","multi-root ready"],
+  "activationEvents": ["onLanguage:feature","onLanguage:behave"],
+  "main": "./bdd-gotostep",
+  "browser": "./bdd-gotostep",
+  "contributes": {
+    "languages": [
+      {
+        "id": "feature",
+        "extensions": ["feature"],
+        "aliases": ["Feature"]
+      }
+    ],
+    "commands": [
+      {
+        "command": "bdd-gotostep.goToDef",
+        "title": "Go to Step Definition",
+        "category": "BDD"
+      }
+    ],
+    "configuration": {
+      "title": "BDD Go To Step",
+      "properties": {
+        "bdd-gotostep.include": {
+          "type": "string",
+          "default": "features/**/*.*",
+          "markdownDescription": "[Glob pattern](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) relative to Workspace folder of the step definition files to include, (default `features/**/*.*`)"
+        },
+        "bdd-gotostep.exclude": {
+          "type": "string",
+          "default": "features/**/*.feature",
+          "markdownDescription": "[Glob pattern](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) relative to Workspace folder of the step definition files to exclude, (default `features/**/*.feature`)"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == feature || resourceLangId == behave",
+          "command": "bdd-gotostep.goToDef",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "homepage": "https://github.com/rioj7/vscode-bdd-gotostep",
+  "bugs": {
+    "url": "https://github.com/rioj7/vscode-bdd-gotostep/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rioj7/vscode-bdd-gotostep.git"
+  },
+  "scripts": {
+    "file-check - cmd": "copy /y /b file-check\\file-check.js+file-check\\check*.js /b out\\file-check.js /b",
+    "file-check - pwsh": "Get-Content file-check\\file-check.js file-check\\check*.js | Set-Content out\\file-check.js"
+  }
+}

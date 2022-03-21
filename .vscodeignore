@@ -1,0 +1,4 @@
+.vscode/**
+.gitignore
+file-check/**
+example/**
