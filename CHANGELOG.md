@@ -3,6 +3,10 @@
 ## [Unreleased]
 ### Added
 
+## [0.3.0] 2022-05-23
+### Added
+- pytest-bdd uses a `parser` to transform fields in step definitions
+
 ## [0.2.0] 2022-03-21
 ### Added
 - Markdown with Gherkin file extension: `.feature.md`

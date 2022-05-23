@@ -2,7 +2,7 @@
 
 ## Description
 
-A Visual Studio Code extension that provides go to step implementation on feature files for Cucumber and Behave.
+A Visual Studio Code extension that provides go to step implementation on feature files for Cucumber, Behave and pytest-bdd.
 
 ## How to use
 
