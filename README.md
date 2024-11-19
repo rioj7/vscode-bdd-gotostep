@@ -32,7 +32,7 @@ They can be found in the Settings GUI under: **Extensions** > **BDD Go To Step**
 
 You only have to change these settings if you store the `.feature` files in a different directory than `features`.
 
-## Suppoted languages
+## Supported languages
 
 Using the examples in the Cucumber and Behave documentation the following languages have step detection:
 
