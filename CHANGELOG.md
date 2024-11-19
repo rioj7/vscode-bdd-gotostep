@@ -1,7 +1,8 @@
 # Change Log
 
-## [Unreleased]
-### Added
+## [1.0.0] 2024-11-19
+### Fixed
+- python steps detection, just search for a string in bdd decorator
 
 ## [0.3.0] 2022-05-23
 ### Added
