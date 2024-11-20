@@ -12,32 +12,35 @@ function utf8_to_str(src, off, lim) {  // https://github.com/quicbit-js/qb-utf8-
   return decodeURIComponent(s);
 }
 
+/** @param {string} step @param {string[]} lines @param {string} extension @returns {number[]} */
 function findStep(step, lines, extension) {
+  let found = [];
   const fileChecker = fileCheck.getFileChecker(extension);
-  if (fileChecker === undefined) { return -1; }
+  if (fileChecker === undefined) { return found; }
   for (let idx = 0; idx < lines.length; idx++) {
-    if (fileChecker(step, lines[idx].trim())) { return idx; }
+    if (fileChecker(step, lines[idx].trim())) { found.push(idx); }
   }
   fileChecker(step, ''); // clear possible line buffers
-  return -1;
+  return found;
 }
 
 /** @param {String} step @param {vscode.WorkspaceFolder} workspace @param {String} includeGlob */
 async function getStepDef(step, workspace, includeGlob, excludeGlob) {
   const patternInclude = includeGlob ? new vscode.RelativePattern(workspace, includeGlob) : undefined;
   const patternExclude = excludeGlob ? new vscode.RelativePattern(workspace, excludeGlob) : undefined;
+  let foundLines = [];
   const uris = await vscode.workspace.findFiles(patternInclude, patternExclude);
   for (const uri of uris) {
     const idx = uri.path.lastIndexOf('.');
     if (idx === -1) { continue; }
     const extension = uri.path.substring(idx);
     const lines = utf8_to_str(await vscode.workspace.fs.readFile(uri)).split("\n");
-    const lineNr = findStep(step, lines, extension);
-    if (lineNr >= 0) {
-      return {uri, lineNr};
-    }
+    const lineNrs = findStep(step, lines, extension);
+    lineNrs.forEach(lineNr => foundLines.push({uri, lineNr, label: lines[lineNr]}));
   }
-  return undefined;
+  if (foundLines.length === 0) { return undefined; }
+  if (foundLines.length === 1) { return foundLines[0]; }
+  return vscode.window.showQuickPick(foundLines, {title: 'Multiple steps match'});
 }
 
 /** @param {vscode.TextEditor} textEditor @param {Number} line */

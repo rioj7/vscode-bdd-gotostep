@@ -1,9 +1,10 @@
 # Change Log
 
-## [1.0.1] 2024-11-xx
+## [1.0.1] 2024-11-20
 ### Added
 - report error in creating Regexp from Step Description and continue searching
 - honor escaped characters in Step Description
+- if multiple steps match show a QuickPick with the Step Descriptions
 
 ## [1.0.0] 2024-11-19
 ### Fixed

@@ -2,7 +2,7 @@
   "name": "vscode-bdd-gotostep",
   "displayName": "BDD Goto Step",
   "description": "From feature file go to step definition",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "rioj7",
   "license": "MIT",
   "engines": {"vscode": "^1.60.0"},
