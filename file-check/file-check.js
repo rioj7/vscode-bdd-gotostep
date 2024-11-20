@@ -1,3 +1,5 @@
+const vscode = require("vscode");
+
 let fileCheckers = new Map();
 
 function getFileChecker(extension) {
@@ -53,7 +55,15 @@ var checkLine = (function () {
         }
         if (regexStr) {
           lineBuffer = undefined;
-          return (new RegExp(regexStr.replace(/\{.*?\}|\(\?P<\w+>[^)]+\)/g, '.*?'), 'i')).test(step);
+          try {
+            return (new RegExp(regexStr.replace(/\{.*?\}|\(\?P<\w+>[^)]+\)/g, '.*?'), 'i')).test(step);
+          } catch (e) {
+            if (e instanceof SyntaxError) {
+              vscode.window.showErrorMessage(`Error creating RegExp from: ${line} - ${e.name}: ${e.message}`);
+              return false;
+            }
+            throw e;
+          }
         }
       }
     }

@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.1] 2024-11-xx
+### Added
+- report error in creating Regexp from Step Description and continue searching
+
 ## [1.0.0] 2024-11-19
 ### Fixed
 - python steps detection, just search for a string in bdd decorator
