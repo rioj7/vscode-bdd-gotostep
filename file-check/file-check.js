@@ -14,7 +14,7 @@ function registerFileChecker(extensions, checker) {
 
 var checkLine = (function () {
   let stripRegexpRE = new RegExp('/\\^?(.*?)\\$?/');
-  let stripStringRE = /("""|'''|'|")(.*?)\1/;
+  let stripStringRE = /("""|'''|'|")((?:\\.|.)*?)\1/;
   let lineBuffer = undefined;
   return (step, line, stepBeginRE, options) => {
     if (!options) { options = {}; }
