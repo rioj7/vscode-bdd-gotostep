@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.2] 2024-11-21
+### Fixed
+- steps detection, parse step regex to find correct closing ) of capture group
+
 ## [1.0.1] 2024-11-20
 ### Added
 - report error in creating Regexp from Step Description and continue searching
