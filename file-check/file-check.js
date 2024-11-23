@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 
 let fileCheckers = new Map();
+let variableGroupReplacement = '(?:.*?)';
 
 function getFileChecker(extension) {
   return fileCheckers.get(extension);
@@ -34,7 +35,7 @@ function replaceCaptureGroups(text) {
         let openPar = stack.pop();
         if (insideCaptureGroup > 0 && isCaptureGroup(openPar)) {
           --insideCaptureGroup;
-          if (insideCaptureGroup === 0) { result += '.*?';}
+          if (insideCaptureGroup === 0) { result += variableGroupReplacement;}
         }
       }
     } else {
@@ -93,7 +94,7 @@ var checkLine = (function () {
         if (regexStr) {
           lineBuffer = undefined;
           try {
-            let regexStrResult = regexStr.replace(/\{.*?\}/g, '.*?')
+            let regexStrResult = regexStr.replace(/\{.*?\}/g, variableGroupReplacement);
             regexStrResult = replaceCaptureGroups(regexStrResult);
             return (new RegExp(regexStrResult, 'i')).test(step);
           } catch (e) {

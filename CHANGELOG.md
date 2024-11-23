@@ -1,8 +1,9 @@
 # Change Log
 
-## [1.0.2] 2024-11-21
+## [1.0.3] 2024-11-23
 ### Fixed
 - steps detection, parse step regex to find correct closing ) of capture group
+- steps detection, replace capture group or variable with a (non) capture group: `(?:.*?)`
 
 ## [1.0.1] 2024-11-20
 ### Added
